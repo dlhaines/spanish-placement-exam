@@ -53,11 +53,11 @@ public class SPEEsbPUTGradeIntegrationTest {
 
 	private static Logger M_log = LoggerFactory.getLogger(SPEEsbPUTGradeIntegrationTest.class);
 
-	@Test
-	public void checkPropertiesFile() throws IOException {
-		Properties props = TestingUtils.readTestProperties(speproperties);
-		assertNotNull(props);
-	}
+//	@Test
+//	public void checkPropertiesFile() throws IOException {
+//		Properties props = TestingUtils.readTestProperties(speproperties);
+//		assertNotNull(props);
+//	}
 
 
 	@Test

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 
 import edu.umich.ctools.esb.utils.WAPIResultWrapper;
@@ -115,7 +116,9 @@ public class SPEMaster {
 		//// Get the time from which to request grades.
 		String priorUpdateTime = persisttimestamp.ensureLastGradeTransferTime();
 
-		M_log.info("priorUpdateTime: {}",priorUpdateTime);
+		// If edited then might have a new line added automatically.
+		priorUpdateTime = StringUtils.chomp(priorUpdateTime);
+		M_log.info("priorUpdateTime: [{}]",priorUpdateTime);
 
 		String assignmentsFromDW;
 

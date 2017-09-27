@@ -15,7 +15,6 @@ package edu.umich.its.spe;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +42,7 @@ public class SPESummary {
 	// the value that was already stored by a previous run (if any),
 	// the, possibly computed, value that was actually used for the query,
 	// and the value to be stored for next time.
+
 	// String is a suitable format since these are only used in the report.
 
 	private String storedGradesLastRetrieved = new String();
@@ -53,6 +53,7 @@ public class SPESummary {
 	private String courseId = new String();
 
 	// Keep list of user names and processing success status.
+
 	private List<Pair<String, Boolean>> users  = new ArrayList<Pair<String,Boolean>>();
 	private int added = 0;
 	private int errors = 0;
@@ -89,6 +90,7 @@ public class SPESummary {
 		Duration dur = Duration.between(startTime, endTime);
 
 		// make sure there is a printable value for course id even if used file IO to get users.
+
 		String courseIdString = courseId.toString().length() > 0 ? courseId.toString() : "[none]";
 
 		result.append(LINE_RETURN);
@@ -108,6 +110,7 @@ public class SPESummary {
 
 		result.append("users added: ").append(added).append(" errors: ").append(errors).append(LINE_RETURN);
 		result.append(LINE_RETURN);
+
 
 		// for each user (in sorted order) add an entry to the result string.
 		sortedUsers()

@@ -47,7 +47,8 @@ public class SPEMaster {
 	static final Logger M_log = LoggerFactory.getLogger(SPEMaster.class);
 
 	// Keep maps of (some) specific sets of properties.
-	static HashMap<String,String> unirest;
+	// The name of the map corresponds to the prefix of the associated properties in the properties file.
+	static HashMap<String,String> unirestMap;
 	static HashMap<String,String> emailMap;
 	static HashMap<String,String> repeatMap;
 
@@ -98,12 +99,12 @@ public class SPEMaster {
 	protected void setUnirestGlobalValues() {
 
 		M_log.info("setupUnirestGlobalValues");
-		unirest = speproperties.getUnirest();
-		M_log.info("unirest properties: {}",unirest);
+		unirestMap = speproperties.getUnirest();
+		M_log.info("unirest properties: {}",unirestMap);
 
 		// Setup values for request timeouts.
-		long ct = longFromStringWithDefault(unirest.get("connectionTimeout"), 10000l);
-		long st = longFromStringWithDefault(unirest.get("socketTimeout"), 10000l);
+		long ct = longFromStringWithDefault(unirestMap.get("connectionTimeout"), 10000l);
+		long st = longFromStringWithDefault(unirestMap.get("socketTimeout"), 10000l);
 
 		M_log.info("unirest timeouts: connectionTimeout: {} socketTimeout: {}",ct,st);
 
@@ -261,7 +262,7 @@ public class SPEMaster {
 		sjm.sendSimpleMessage(
 				emailMap.get("from"),
 				emailMap.get("to"),
-				emailMap.get("subject")+" "+SimpleJavaEmail.getISO8601StringForDate(new Date()),
+				emailMap.get("subject")+" "+SPEUtils.getISO8601StringForDate(new Date()),
 				summaryString);
 	}
 
